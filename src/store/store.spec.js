@@ -7,7 +7,7 @@ import {calculateSavings} from '../utils/fuelSavings';
 import {getFormattedDateTime} from '../utils/dates';
 
 describe('Store', () => {
-  let dateModified, history, dispatch;
+  let dateModified;
   beforeAll(() => {
     // hardcoded date for consistency in tests and snapshots on all machines
     MockDate.set(new Date("1/31 23:14:01"));
