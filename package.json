@@ -6,27 +6,24 @@
     "npm": ">=3"
   },
   "scripts": {
-    "start-message": "babel-node tools/startMessage.js",
-    "prestart": "npm run start-message",
-    "start": "concurrently -k -r -s first \"npm run test:watch\" \"npm run open:src\" \"npm run lint:watch\"",
-    "open:src": "babel-node tools/srcServer.js",
-    "open:dist": "babel-node tools/distServer.js",
-    "lint": "esw webpack.config.* src tools --color",
+    "start": "babel-node tools/srcServer.js",
+    "start:prod": "babel-node tools/distServer.js",
+    "lint": "standard",
+    "lint:fix": "standard --fix",
     "lint:watch": "npm run lint -- --watch",
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "rimraf ./dist",
     "prebuild": "npm run lint && npm run test && npm run clean-dist",
-    "build": "babel-node tools/build.js && npm run open:dist",
+    "build": "babel-node tools/build.js && npm run start:prod",
     "test": "BABEL_ENV=test NODE_ENV=test jest --env=jsdom",
-    "test:CI": "babel-node tools/testCi.js",
-    "test:cover": "npm run test -- --coverage ",
-    "test:cover:CI": "npm run test:CI -- --coverage && cat ./coverage/lcov.info | node_modules/coveralls/bin/coveralls.js",
+    "coverage": "npm run test -- --coverage ",
     "test:watch": "jest --watchAll",
-    "open:cover": "npm run test:cover && opn ./coverage/lcov-report/index.html",
+    "open:cover": "npm run coverage && opn ./coverage/lcov-report/index.html",
     "analyze-bundle": "babel-node ./tools/analyzeBundle.js"
   },
   "author": "Kuhan Loh",
   "license": "MIT",
+  "description": "Boilerplate with React/Redux/Thunk/Standard",
   "dependencies": {
     "connected-react-router": "4.4.1",
     "object-assign": "4.1.1",
@@ -58,17 +55,11 @@
     "babel-plugin-transform-react-remove-prop-types": "0.4.19",
     "browser-sync": "2.24.7",
     "chalk": "2.4.1",
-    "concurrently": "4.0.1",
     "connect-history-api-fallback": "1.5.0",
-    "coveralls": "3.0.2",
     "css-loader": "1.0.0",
     "cssnano": "4.1.0",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
-    "eslint": "5.4.0",
-    "eslint-plugin-import": "2.14.0",
-    "eslint-plugin-react": "7.11.1",
-    "eslint-watch": "4.0.2",
     "file-loader": "2.0.0",
     "hard-source-webpack-plugin": "0.12.0",
     "history": "4.7.2",
@@ -82,7 +73,6 @@
     "mini-css-extract-plugin": "0.4.2",
     "mockdate": "2.0.2",
     "node-sass": "4.9.3",
-    "opn-cli": "3.1.0",
     "postcss-loader": "3.0.0",
     "prompt": "1.0.0",
     "prop-types": "15.6.2",
@@ -95,6 +85,7 @@
     "replace": "1.0.0",
     "rimraf": "2.6.2",
     "sass-loader": "7.1.0",
+    "standard": "12.0.1",
     "style-loader": "0.23.0",
     "url-loader": "1.1.1",
     "webpack": "4.17.1",
@@ -105,7 +96,14 @@
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/kuhanloh/react-playground"
+  },
+  "standard": {
+    "globals": [
+      "fetch"
+    ],
+    "env": "jest",
+    "parser": "babel-eslint"
   },
   "jest": {
     "moduleNameMapper": {
@@ -157,34 +155,5 @@
         ]
       }
     }
-  },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "eslint:recommended",
-      "plugin:import/errors",
-      "plugin:import/warnings",
-      "plugin:react/recommended"
-    ],
-    "plugins": [
-      "react"
-    ],
-    "parser": "babel-eslint",
-    "parserOptions": {
-      "ecmaVersion": 6,
-      "sourceType": "module",
-      "ecmaFeatures": {
-        "jsx": true,
-        "experimentalObjectRestSpread": true
-      }
-    },
-    "env": {
-      "es6": true,
-      "browser": true,
-      "node": true,
-      "jquery": true,
-      "jest": true
-    },
-    "globals": {}
   }
 }
