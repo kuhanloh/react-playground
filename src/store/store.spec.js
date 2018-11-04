@@ -1,25 +1,25 @@
-import * as ActionTypes from '../constants/actionTypes';
+import * as ActionTypes from '../constants/actionTypes'
 
-import MockDate from 'mockdate';
-import configureStore from './configureStore';
+import MockDate from 'mockdate'
+import configureStore from './configureStore'
 
-import {calculateSavings} from '../utils/fuelSavings';
-import {getFormattedDateTime} from '../utils/dates';
+import { calculateSavings } from '../utils/fuelSavings'
+import { getFormattedDateTime } from '../utils/dates'
 
 describe('Store', () => {
-  let dateModified;
+  let dateModified
   beforeAll(() => {
     // hardcoded date for consistency in tests and snapshots on all machines
-    MockDate.set(new Date("1/31 23:14:01"));
-    dateModified = getFormattedDateTime();
-  });
+    MockDate.set(new Date('1/31 23:14:01'))
+    dateModified = getFormattedDateTime()
+  })
   afterAll(() => {
-    MockDate.reset();
+    MockDate.reset()
     dateModified = null
-  });
+  })
 
   it('should display results when necessary data is provided', () => {
-    const store = configureStore();
+    const store = configureStore()
 
     const actions = [
       { type: ActionTypes.CALCULATE_FUEL_SAVINGS, dateModified, settings: store.getState(), fieldName: 'newMpg', value: 20 },
@@ -28,10 +28,10 @@ describe('Store', () => {
       { type: ActionTypes.CALCULATE_FUEL_SAVINGS, dateModified, settings: store.getState(), fieldName: 'tradePpg', value: 1.50 },
       { type: ActionTypes.CALCULATE_FUEL_SAVINGS, dateModified, settings: store.getState(), fieldName: 'milesDriven', value: 100 },
       { type: ActionTypes.CALCULATE_FUEL_SAVINGS, dateModified, settings: store.getState(), fieldName: 'milesDrivenTimeframe', value: 'month' }
-    ];
-    actions.forEach(action => store.dispatch(action));
+    ]
+    actions.forEach(action => store.dispatch(action))
 
-    const actual = store.getState();
+    const actual = store.getState()
     const expected = {
       newMpg: 20,
       tradeMpg: 10,
@@ -43,13 +43,13 @@ describe('Store', () => {
       dateModified,
       necessaryDataIsProvidedToCalculateSavings: true,
       savings: calculateSavings(store.getState().fuelSavings)
-    };
+    }
 
-    expect(actual.fuelSavings).toEqual(expected);
-  });
+    expect(actual.fuelSavings).toEqual(expected)
+  })
 
   it('should not display results when necessary data is not provided', () => {
-    const store = configureStore();
+    const store = configureStore()
 
     const actions = [
       { type: ActionTypes.CALCULATE_FUEL_SAVINGS, dateModified, settings: store.getState(), fieldName: 'newMpg', value: 20 },
@@ -58,11 +58,11 @@ describe('Store', () => {
       { type: ActionTypes.CALCULATE_FUEL_SAVINGS, dateModified, settings: store.getState(), fieldName: 'tradePpg', value: 1.50 },
       { type: ActionTypes.CALCULATE_FUEL_SAVINGS, dateModified, settings: store.getState(), fieldName: 'milesDriven', value: 100 },
       { type: ActionTypes.CALCULATE_FUEL_SAVINGS, dateModified, settings: store.getState(), fieldName: 'milesDrivenTimeframe', value: 'month' }
-    ];
+    ]
 
-    actions.forEach(action => store.dispatch(action));
+    actions.forEach(action => store.dispatch(action))
 
-    const actual = store.getState();
+    const actual = store.getState()
 
     const expected = {
       newMpg: 20,
@@ -75,14 +75,13 @@ describe('Store', () => {
       dateModified,
       necessaryDataIsProvidedToCalculateSavings: false,
       savings: { annual: 0, monthly: 0, threeYear: 0 }
-    };
+    }
 
-    expect(actual.fuelSavings).toEqual(expected);
-  });
-
+    expect(actual.fuelSavings).toEqual(expected)
+  })
 
   it('should handle a flurry of actions', () => {
-    const store = configureStore();
+    const store = configureStore()
 
     const actions = [
       { type: ActionTypes.CALCULATE_FUEL_SAVINGS, dateModified, settings: store.getState(), fieldName: 'newMpg', value: 20 },
@@ -101,21 +100,21 @@ describe('Store', () => {
       { type: ActionTypes.CALCULATE_FUEL_SAVINGS, dateModified, settings: store.getState(), fieldName: 'newMpg', value: 20 },
       { type: ActionTypes.CALCULATE_FUEL_SAVINGS, dateModified, settings: store.getState(), fieldName: 'tradeMpg', value: 10 },
       { type: ActionTypes.CALCULATE_FUEL_SAVINGS, dateModified, settings: store.getState(), fieldName: 'newPpg', value: 1.50 }
-    ];
-    actions.forEach(action => store.dispatch(action));
+    ]
+    actions.forEach(action => store.dispatch(action))
 
-    calculateSavings(store.getState().fuelSavings);
+    calculateSavings(store.getState().fuelSavings)
 
     const moreActions = [
       { type: ActionTypes.CALCULATE_FUEL_SAVINGS, dateModified, settings: store.getState(), fieldName: 'tradePpg', value: 0 },
       { type: ActionTypes.CALCULATE_FUEL_SAVINGS, dateModified, settings: store.getState(), fieldName: 'milesDriven', value: 100 },
       { type: ActionTypes.CALCULATE_FUEL_SAVINGS, dateModified, settings: store.getState(), fieldName: 'milesDrivenTimeframe', value: 'year' }
-    ];
+    ]
 
-    moreActions.forEach(action => store.dispatch(action));
+    moreActions.forEach(action => store.dispatch(action))
 
-    const actual = store.getState();
-    //const expected = {
+    const actual = store.getState()
+    // const expected = {
     //  newMpg: 20,
     //  tradeMpg: 10,
     //  newPpg: 1.50,
@@ -126,14 +125,14 @@ describe('Store', () => {
     //  dateModified,
     //  necessaryDataIsProvidedToCalculateSavings: false,
     //  savings: lastGoodSavings
-    //};
+    // };
     //
-    //expect(actual.fuelSavings).toEqual(expected);
+    // expect(actual.fuelSavings).toEqual(expected);
 
     // with jest snapshots the above assertion can be replaced with this one line
     // jest will store the value in a file within ./__snapshots__
     // snapshots can/should be committed and reviewed
     // jest will also update snapshot or delete unused ones using the command `npm run test -- -u`
-    expect(actual.fuelSavings).toMatchSnapshot();
-  });
-});
+    expect(actual.fuelSavings).toMatchSnapshot()
+  })
+})
