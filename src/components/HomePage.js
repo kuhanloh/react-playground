@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 const HomePage = () => {
-  const technologiesList = ['React','Redux','Thunk','Webpack','Jest','Enzyme','Standard']
+  const technologiesList = ['React', 'Redux', 'Thunk', 'Webpack', 'Jest', 'Enzyme', 'Standard']
   return (
     <div>
       <h1>React Boilerplate</h1>
@@ -15,7 +14,7 @@ const HomePage = () => {
           )
         }
         <li>
-          <a href="https://github.com/kuhanloh/react-playground/blob/master/package.json">
+          <a href='https://github.com/kuhanloh/react-playground/blob/master/package.json' target='_blank'>
             Full list here
           </a>
         </li>

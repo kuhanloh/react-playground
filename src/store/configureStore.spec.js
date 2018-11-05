@@ -32,6 +32,8 @@ describe('Store', () => {
     actions.forEach(action => store.dispatch(action))
 
     const actual = store.getState()
+
+    /*
     const expected = {
       newMpg: 20,
       tradeMpg: 10,
@@ -44,8 +46,10 @@ describe('Store', () => {
       necessaryDataIsProvidedToCalculateSavings: true,
       savings: calculateSavings(store.getState().fuelSavings)
     }
-
     expect(actual.fuelSavings).toEqual(expected)
+    */
+
+    expect(actual.fuelSavings).toMatchSnapshot()
   })
 
   it('should not display results when necessary data is not provided', () => {
@@ -64,6 +68,7 @@ describe('Store', () => {
 
     const actual = store.getState()
 
+    /*
     const expected = {
       newMpg: 20,
       tradeMpg: 10,
@@ -76,8 +81,10 @@ describe('Store', () => {
       necessaryDataIsProvidedToCalculateSavings: false,
       savings: { annual: 0, monthly: 0, threeYear: 0 }
     }
-
     expect(actual.fuelSavings).toEqual(expected)
+    */
+
+    expect(actual.fuelSavings).toMatchSnapshot()
   })
 
   it('should handle a flurry of actions', () => {
