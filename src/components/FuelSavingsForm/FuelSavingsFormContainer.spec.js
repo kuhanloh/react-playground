@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import { create } from 'react-test-renderer'
 import ConnectedFuelSavingsFormContainer, { FuelSavingsFormContainer } from './FuelSavingsFormContainer'
 import FuelSavingsForm from './FuelSavingsForm'
-import initialState from '../../reducers/initialState'
+import initialState from '../../store/reducers/initialState'
 
 describe('<FuelSavingsFormContainer />', () => {
   const actions = {

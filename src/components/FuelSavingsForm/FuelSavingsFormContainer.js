@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as actions from '../../actions/fuelSavingsActions'
+import * as actions from '../../store/actions/fuelSavingsActions'
 import FuelSavingsForm from './FuelSavingsForm'
 
 export class FuelSavingsFormContainer extends React.Component {

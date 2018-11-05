@@ -1,5 +1,5 @@
-import { SAVE_FUEL_SAVINGS, CALCULATE_FUEL_SAVINGS } from '../constants/actionTypes'
-import { necessaryDataIsProvidedToCalculateSavings, calculateSavings } from '../utils/fuelSavings'
+import { SAVE_FUEL_SAVINGS, CALCULATE_FUEL_SAVINGS } from '../actions/actions'
+import { necessaryDataIsProvidedToCalculateSavings, calculateSavings } from '../../utils/fuelSavings'
 import objectAssign from 'object-assign'
 import initialState from './initialState'
 

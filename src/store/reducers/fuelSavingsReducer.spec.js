@@ -1,6 +1,6 @@
-import * as ActionTypes from '../constants/actionTypes'
+import * as ActionTypes from '../actions/actions'
 import reducer from './fuelSavingsReducer'
-import { getFormattedDateTime } from '../utils/dates'
+import { getFormattedDateTime } from '../../utils/dates'
 
 describe('Reducers::FuelSavings', () => {
   const getInitialState = () => {
