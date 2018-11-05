@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from '../../actions/fuelSavingsActions'
-import FuelSavingsForm from '../FuelSavingsForm'
+import FuelSavingsForm from './FuelSavingsForm'
 
-export class FuelSavingsPage extends React.Component {
+export class FuelSavingsFormContainer extends React.Component {
   saveFuelSavings = () => {
     this.props.actions.saveFuelSavings(this.props.fuelSavings)
   }
@@ -25,7 +25,7 @@ export class FuelSavingsPage extends React.Component {
   }
 }
 
-FuelSavingsPage.propTypes = {
+FuelSavingsFormContainer.propTypes = {
   actions: PropTypes.object.isRequired,
   fuelSavings: PropTypes.object.isRequired
 }
@@ -45,4 +45,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FuelSavingsPage)
+)(FuelSavingsFormContainer)

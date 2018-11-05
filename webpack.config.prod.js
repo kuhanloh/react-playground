@@ -128,25 +128,17 @@ export default {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true
-            }
+            loader: 'css-loader'
           }, {
             loader: 'postcss-loader',
             options: {
               plugins: () => [
                 require('cssnano'),
                 require('autoprefixer')
-              ],
-              sourceMap: true
+              ]
             }
           }, {
-            loader: 'sass-loader',
-            options: {
-              includePaths: [path.resolve(__dirname, 'src', 'scss')],
-              sourceMap: true
-            }
+            loader: 'sass-loader'
           }
         ]
       }

@@ -1,8 +1,7 @@
-/* eslint-disable import/no-named-as-default */
 import { NavLink, Route, Switch } from 'react-router-dom'
 
-import AboutPage from './AboutPage'
-import FuelSavingsPage from './containers/FuelSavingsPage'
+import AboutPage from './AboutPage/AboutPage'
+import FuelSavingsFormContainer from './FuelSavingsForm/FuelSavingsFormContainer'
 import HomePage from './HomePage'
 import NotFoundPage from './NotFoundPage'
 import PropTypes from 'prop-types'
@@ -27,7 +26,7 @@ class App extends React.Component {
         </div>
         <Switch>
           <Route exact path='/' component={HomePage} />
-          <Route path='/fuel-savings' component={FuelSavingsPage} />
+          <Route path='/fuel-savings' component={FuelSavingsFormContainer} />
           <Route path='/about' component={AboutPage} />
           <Route component={NotFoundPage} />
         </Switch>

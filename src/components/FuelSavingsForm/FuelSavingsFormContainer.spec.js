@@ -3,11 +3,11 @@ import { mount, shallow } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { create } from 'react-test-renderer'
-import ConnectedFuelSavingsPage, { FuelSavingsPage } from './FuelSavingsPage'
-import FuelSavingsForm from '../FuelSavingsForm'
+import ConnectedFuelSavingsFormContainer, { FuelSavingsFormContainer } from './FuelSavingsFormContainer'
+import FuelSavingsForm from './FuelSavingsForm'
 import initialState from '../../reducers/initialState'
 
-describe('<FuelSavingsPage />', () => {
+describe('<FuelSavingsFormContainer />', () => {
   const actions = {
     saveFuelSavings: jest.fn(),
     calculateFuelSavings: jest.fn()
@@ -15,7 +15,7 @@ describe('<FuelSavingsPage />', () => {
 
   it('should contain <FuelSavingsForm />', () => {
     const wrapper = shallow(
-      <FuelSavingsPage
+      <FuelSavingsFormContainer
         actions={actions}
         fuelSavings={initialState.fuelSavings}
       />
@@ -26,7 +26,7 @@ describe('<FuelSavingsPage />', () => {
 
   it('calls saveFuelSavings upon clicking save', () => {
     const wrapper = mount(
-      <FuelSavingsPage
+      <FuelSavingsFormContainer
         actions={actions}
         fuelSavings={initialState.fuelSavings}
       />
@@ -42,7 +42,7 @@ describe('<FuelSavingsPage />', () => {
 
   it('calls calculateFuelSavings upon changing a field', () => {
     const wrapper = mount(
-      <FuelSavingsPage
+      <FuelSavingsFormContainer
         actions={actions}
         fuelSavings={initialState.fuelSavings}
       />
@@ -64,7 +64,7 @@ describe('<FuelSavingsPage />', () => {
     const store = configureMockStore()(initialState)
     const component = create(
       <Provider store={store}>
-        <ConnectedFuelSavingsPage />
+        <ConnectedFuelSavingsFormContainer />
       </Provider>
     )
     const tree = component.toJSON()

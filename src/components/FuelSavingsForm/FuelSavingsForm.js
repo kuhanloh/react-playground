@@ -1,8 +1,8 @@
 import React from 'react'
 import { func } from 'prop-types'
-import FuelSavingsResults from './FuelSavingsResults'
-import FuelSavingsTextInput from './FuelSavingsTextInput'
-import { fuelSavings } from '../types'
+import FuelSavingsResults from '../FuelSavingsResults/FuelSavingsResults'
+import FuelSavingsTextInput from '../FuelSavingsTextInput/FuelSavingsTextInput'
+import { fuelSavings } from '../Types'
 
 const FuelSavingsForm = ({ fuelSavings, onSaveClick, onChange }) => (
   <div>
@@ -56,7 +56,10 @@ const FuelSavingsForm = ({ fuelSavings, onSaveClick, onChange }) => (
 
     <hr />
 
-    {fuelSavings.necessaryDataIsProvidedToCalculateSavings && <FuelSavingsResults savings={fuelSavings.savings} />}
+    {
+      fuelSavings.necessaryDataIsProvidedToCalculateSavings &&
+      <FuelSavingsResults savings={fuelSavings.savings} />
+    }
     <input type='submit' value='Save' onClick={onSaveClick} />
   </div>
 )
