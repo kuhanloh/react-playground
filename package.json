@@ -1,7 +1,7 @@
 {
   "name": "playground",
   "version": "0.1.0",
-  "description": "",
+  "description": "Boilerplate with React/Redux/Thunk/Standard",
   "engines": {
     "npm": ">=3"
   },
@@ -23,10 +23,9 @@
   },
   "author": "Kuhan Loh",
   "license": "MIT",
-  "description": "Boilerplate with React/Redux/Thunk/Standard",
   "dependencies": {
     "connected-react-router": "4.4.1",
-    "object-assign": "4.1.1",
+    "deepmerge": "^2.2.1",
     "react": "^16.6.0",
     "react-dom": "^16.0.0",
     "react-redux": "5.0.7",
