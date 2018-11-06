@@ -1,18 +1,27 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
 
 const HomePage = () => {
+  const technologiesList = ['React', 'Redux', 'Thunk', 'Webpack', 'Jest', 'Enzyme', 'Standard']
   return (
     <div>
-      <h1>React Slingshot</h1>
+      <h1>React Boilerplate</h1>
 
-      <h2>Get Started</h2>
-      <ol>
-        <li>Review the <Link to="/fuel-savings">demo app</Link></li>
-        <li>Remove the demo and start coding: npm run remove-demo</li>
-      </ol>
+      <h2>Some of the tech used: </h2>
+      <ul>
+        {
+          technologiesList.map((technology, index) =>
+            <li key={index}>{technology}</li>
+          )
+        }
+        <li>
+          <a href='https://github.com/kuhanloh/react-playground/blob/master/package.json' target='_blank'>
+            Full list here
+          </a>
+        </li>
+
+      </ul>
     </div>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage

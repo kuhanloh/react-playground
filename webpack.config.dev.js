@@ -1,7 +1,7 @@
-import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import path from 'path';
-import HardSourceWebpackPlugin from 'hard-source-webpack-plugin'; 
+import webpack from 'webpack'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import path from 'path'
+import HardSourceWebpackPlugin from 'hard-source-webpack-plugin'
 
 export default {
   resolve: {
@@ -26,7 +26,7 @@ export default {
     new HardSourceWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new HtmlWebpackPlugin({     // Create HTML file that includes references to bundled CSS and JS.
+    new HtmlWebpackPlugin({ // Create HTML file that includes references to bundled CSS and JS.
       template: 'src/index.ejs',
       minify: {
         removeComments: true,
@@ -98,27 +98,19 @@ export default {
         use: [
           'style-loader',
           {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true
-            }
+            loader: 'css-loader'
           }, {
             loader: 'postcss-loader',
             options: {
               plugins: () => [
                 require('autoprefixer')
-              ],
-              sourceMap: true
+              ]
             }
           }, {
-            loader: 'sass-loader',
-            options: {
-              includePaths: [path.resolve(__dirname, 'src', 'scss')],
-              sourceMap: true
-            }
+            loader: 'sass-loader'
           }
         ]
       }
     ]
   }
-};
+}
