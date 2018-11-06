@@ -24,7 +24,7 @@
   "author": "Kuhan Loh",
   "license": "MIT",
   "dependencies": {
-    "connected-react-router": "4.4.1",
+    "connected-react-router": "^5.0.1",
     "deepmerge": "^2.2.1",
     "react": "^16.6.0",
     "react-dom": "^16.0.0",
