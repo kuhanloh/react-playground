@@ -5,10 +5,10 @@ import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import { BrowserRouter } from 'react-router-dom'
 
+import './index.scss'
+
 import configureStore, { history } from './store/configureStore'
 import Root from './components/Root'
-
-import './index.scss'
 
 require('./favicon.ico') // Tell webpack to load favicon.ico
 
