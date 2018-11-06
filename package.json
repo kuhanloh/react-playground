@@ -19,7 +19,8 @@
     "coverage": "npm run test -- --coverage ",
     "test-watch": "jest --watchAll",
     "open-cover": "npm run coverage && opn ./coverage/lcov-report/index.html",
-    "analyze-bundle": "babel-node ./tools/analyzeBundle.js"
+    "analyze-bundle": "babel-node ./tools/analyzeBundle.js",
+    "storybook": "start-storybook -p 9001 -c ./storybook"
   },
   "author": "Kuhan Loh",
   "license": "MIT",
@@ -27,7 +28,7 @@
     "connected-react-router": "^5.0.1",
     "deepmerge": "^2.2.1",
     "react": "^16.6.0",
-    "react-dom": "^16.0.0",
+    "react-dom": "^16.6.0",
     "react-redux": "^5.1.0",
     "react-router-dom": "4.3.1",
     "redux": "^4.0.1",
@@ -45,6 +46,7 @@
     "@babel/preset-env": "7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.1.2",
+    "@storybook/react": "4.0.4",
     "autoprefixer": "^9.3.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",

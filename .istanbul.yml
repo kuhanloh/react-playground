@@ -1,4 +1,4 @@
 instrumentation:
   extensions: ['.js']
-  excludes: ['*.spec.js']
+  excludes: ['*.spec.js', '*.story.js']
   include-all-sources: true
